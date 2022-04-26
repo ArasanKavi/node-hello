@@ -3,5 +3,5 @@ RUN mkdir -p /usr/src/new
 WORKDIR /usr/src/new
 COPY . .
 RUN npm install
-EXPOSE 3055
+EXPOSE 3056
 CMD [ "node", "index.js" ]
