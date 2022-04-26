@@ -5,4 +5,4 @@ services:
     container_name: node-test3
     restart: unless-stopped
     ports:
-      - 3052:30502
+      - 3053:3053
