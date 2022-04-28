@@ -2,7 +2,7 @@ version: '3'
 services:
   backend:
     image: newimage
-    container_name: node-test3
+    container_name: node-test4
     restart: unless-stopped
     ports:
-      - 3058:3058
+      - 3059:3059
