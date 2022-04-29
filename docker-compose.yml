@@ -3,6 +3,5 @@ services:
   backend:
     image: newimage
     container_name: node-test4
-    restart: unless-stopped
     ports:
       - 3059:3059
