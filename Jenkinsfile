@@ -56,7 +56,7 @@ pipeline {
                 withCredentials([string(credentialsId: ‘telegramToken’, variable: ‘TOKEN’),
                 string(credentialsId: ‘telegramChatId’, variable: ‘CHAT_ID’)]) {
                 sh ”””
-                curl -s -X POST https://api.telegram.org/bot5338197187:AAHQPI9Mp7stlQstPyKaQbzZ5BYp8TeDnQU/getUpdates
+                 https://api.telegram.org/bot5338197187:AAHQPI9Mp7stlQstPyKaQbzZ5BYp8TeDnQU/getUpdates
 	        ”””
               }
             }
