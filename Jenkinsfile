@@ -50,7 +50,7 @@ pipeline {
 		  """
       }
     } 
-    stage(‘Push Notification’) {
+    stage("Triggering") {
          steps {
            script{
                 withCredentials([string(credentialsId: ‘telegramToken’, variable: ‘TOKEN’),
