@@ -53,12 +53,9 @@ pipeline {
     stage("Triggering") {
          steps {
            script{
-                withCredentials([string(credentialsId: ‘telegramToken’, variable: ‘TOKEN’),
-                string(credentialsId: ‘telegramChatId’, variable: ‘CHAT_ID’)]) {
-                sh ”””
+                 sh ”””
                  https://api.telegram.org/bot5338197187:AAHQPI9Mp7stlQstPyKaQbzZ5BYp8TeDnQU/getUpdates
-	        ”””
-              }
+	         ””” 
             }
            }
           }
