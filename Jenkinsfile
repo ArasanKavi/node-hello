@@ -53,9 +53,7 @@ pipeline {
     stage("Triggering") {
          steps {
            script{
-                 sh ”””
-                 https://api.telegram.org/bot5338197187:AAHQPI9Mp7stlQstPyKaQbzZ5BYp8TeDnQU/getUpdates
-	         ””” 
+                 sh "https://api.telegram.org/bot5338197187:AAHQPI9Mp7stlQstPyKaQbzZ5BYp8TeDnQU/getUpdates" 
             }
            }
           }
