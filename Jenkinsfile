@@ -53,8 +53,8 @@ pipeline {
     stage("Triggering") {
          steps {
             script{
-               withCredentials([string(credentialsId: '5338197187:AAHQPI9Mp7stlQstPyKaQbzZ5BYp8TeDnQU', variable: 'TOKEN'),
-               string(credentialsId: '1109112550', variable: 'CHAT_ID')]) {
+               withCredentials([string(credentialsId: 'continous-integration-token', variable: 'TOKEN'),
+               string(credentialsId: 'Telegramchatid', variable: 'CHAT_ID')]) {
                sh """
                curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode="HTML" -d text="<b>Project</b> : POC \
                 <b>Branch</b>: master \
