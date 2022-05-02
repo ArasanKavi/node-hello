@@ -5,7 +5,8 @@ pipeline {
         AWS_DEFAULT_REGION="us-east-1" 
         REPOSITORY_URI = "246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew"
 		IMAGE_TAG="246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew" + ":" +"${BUILD_NUMBER}"
-		BUILD_NEGATIVE= "${env.IMAGE_TAG}"+ "-" +"1"
+		SAMPLE= "1"
+		BUILD_NEGATIVE= "${env.IMAGE_TAG}"+ - +"${env.SAMPLE}"
     }
    
     stages {
