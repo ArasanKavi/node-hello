@@ -6,7 +6,7 @@ pipeline {
         REPOSITORY_URI = "246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew"
 		IMAGE_TAG="246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew" + ":" +"${BUILD_NUMBER}"
 		SAMPLE= "1"
-		BUILD_NEGATIVE= "${env.IMAGE_TAG}"+ - +"${env.SAMPLE}"
+		BUILD_NEGATIVE= "${env.IMAGE_TAG}"+ "-" +"${env.SAMPLE}"
     }
    
     stages {
