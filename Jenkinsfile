@@ -5,8 +5,6 @@ pipeline {
         AWS_DEFAULT_REGION="us-east-1" 
         REPOSITORY_URI = "246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew"
 		IMAGE_TAG="246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew" + ":" +"${BUILD_NUMBER}"
-		SAMPLE= "1"
-		BUILD_NEGATIVE= "${env.IMAGE_TAG}"+ "-" +"${env.SAMPLE}"
     }
    
     stages {
@@ -48,7 +46,7 @@ pipeline {
 	      sh """
 		  sed -i "s|newimage|${env.IMAGE_TAG}|g" docker-compose.yml
 		  docker-compose up -d
-		  docker rmi -f ${env.BUILD_NEGATIVE}
+		  docker rmi -f $(docker images -a -q)
 		  """
       }
     } 
