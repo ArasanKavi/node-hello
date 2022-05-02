@@ -54,7 +54,7 @@ pipeline {
          steps {
             script{
                withCredentials([string(credentialsId: 'continous-integration-token', variable: 'TOKEN'),
-               string(credentialsId: 'Telegramchatid', variable: 'CHAT_ID')]) {
+               string(credentialsId: 'Telegramgroupid', variable: 'CHAT_ID')]) {
                sh """
                curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode="HTML" -d text="<b>Project</b> : POC \
                 <b>Branch</b>: master \
