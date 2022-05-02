@@ -8,7 +8,7 @@ pipeline {
 		JOB_NAME= "Triggering Telegram Bot"
 		COMMIT_MESSAGE= "website build changes"
 		RELEASE_NOTES = "$GIT_COMMIT"
-		commited= "$Committed by"
+		Committed by= "$username"
     }
    
     stages {
