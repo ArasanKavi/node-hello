@@ -8,6 +8,7 @@ pipeline {
 		JOB_NAME= "Triggering Telegram Bot"
 		COMMIT_MESSAGE= "website build changes"
 		RELEASE_NOTES = "$GIT_COMMIT"
+		Author_Name=sh(script: "git show -s --pretty=%ae", returnStdout: true).trim()
     }
    
     stages {
@@ -59,7 +60,6 @@ pipeline {
                withCredentials([string(credentialsId: 'continous-integration-token', variable: 'TOKEN'),
                string(credentialsId: 'Telegramchatid', variable: 'CHAT_ID')]) {
                sh """
-               Author_Name=sh(script: "git show -s --pretty=%ae", returnStdout: true).trim()
 			   curl -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="Hi, Jenkins job: ${JOB_NAME} status is ${currentBuild.currentResult} , Committed by : ${env.Author_Name} , commit-id : ${env.RELEASE_NOTES} , commit msg : ${env.GIT_COMMIT_MSG}"
                 """
                }
