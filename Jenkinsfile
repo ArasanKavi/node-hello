@@ -5,6 +5,8 @@ pipeline {
         AWS_DEFAULT_REGION="us-east-1" 
         REPOSITORY_URI = "246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew"
 		IMAGE_TAG="246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew" + ":" +"${BUILD_NUMBER}"
+		JOB_NAME= "Triggering Telegram Bot"
+		COMMIT_MESSAGE= "website build changes"
     }
    
     stages {
@@ -56,10 +58,7 @@ pipeline {
                withCredentials([string(credentialsId: 'continous-integration-token', variable: 'TOKEN'),
                string(credentialsId: 'Telegramchatid', variable: 'CHAT_ID')]) {
                sh """
-               curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode="HTML" -d text="<b>Project</b> : POC \
-                <b>Branch</b>: master \
-                <b>Build </b> : OK \
-                <b>Test suite</b> = Passed"
+               curl -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="Hi, Jenkins job: ${JOB_NAME} status is ${currentBuild.currentResult} , Committed by : ${env.GIT_AUTHOR} , commit-id : ${env.COMMIT} , commit msg : ${env.GIT_COMMIT_MSG}"
                 """
                }
             }
