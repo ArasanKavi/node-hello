@@ -7,7 +7,8 @@ pipeline {
 		IMAGE_TAG="246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew" + ":" +"${BUILD_NUMBER}"
 		JOB_NAME= "Triggering Telegram Bot"
 		COMMIT_MESSAGE= "website build changes"
-		RELEASE_NOTES = "$GIT_COMMIT"
+		RELEASE_NOTES = "${GIT_COMMIT}"
+		commited= "${Committed by}"
     }
    
     stages {
@@ -59,7 +60,7 @@ pipeline {
                withCredentials([string(credentialsId: 'continous-integration-token', variable: 'TOKEN'),
                string(credentialsId: 'Telegramchatid', variable: 'CHAT_ID')]) {
                sh """
-               curl -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="Hi, Jenkins job: ${JOB_NAME} status is ${currentBuild.currentResult} , Committed by : ${env.GIT_AUTHOR} , commit-id : ${env.RELEASE_NOTES} , commit msg : ${env.GIT_COMMIT_MSG}"
+               curl -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="Hi, Jenkins job: ${JOB_NAME} status is ${currentBuild.currentResult} , Committed by : ${env.commited} , commit-id : ${env.RELEASE_NOTES} , commit msg : ${env.GIT_COMMIT_MSG}"
                 """
                }
             }
