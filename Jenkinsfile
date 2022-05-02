@@ -7,8 +7,8 @@ pipeline {
 		IMAGE_TAG="246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew" + ":" +"${BUILD_NUMBER}"
 		JOB_NAME= "Triggering Telegram Bot"
 		COMMIT_MESSAGE= "website build changes"
-		RELEASE_NOTES = "${GIT_COMMIT}"
-		commited= "${Committed by}"
+		RELEASE_NOTES = "$GIT_COMMIT"
+		commited= "$Committed by"
     }
    
     stages {
