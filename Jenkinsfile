@@ -53,7 +53,7 @@ pipeline {
     stage('Run Container on Server Dev') {
 	  steps{  
 	      sh """
-		  docker rmi -f 'docker images -qa' 		  
+		  docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi 		  
 		  """
       }
     } 
