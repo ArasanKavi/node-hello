@@ -10,7 +10,7 @@ pipeline {
 		COMMIT_MESSAGE= sh(script: "git show -s --pretty=%s", returnStdout: true).trim()
 		Author_Name= sh(script: "git show -s --pretty=%an", returnStdout: true).trim()    
 		IMAGE= "246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew"
-		LAST_BUILD= "currentBuild.getPreviousBuild()"
+		LAST_BUILD= "currentBuild.previousBuild.number"
 		HEALTH= "${env.IMAGE}"+ ":" +"${env.LAST_BUILD}"
 	}
    
@@ -55,7 +55,7 @@ pipeline {
     stage('Run Container on Server Dev') {
 	  steps{  
 	      sh """
-		  docker rmi ${env.HEALTH} | true
+		  docker rmi ${env.HEALTH} 
 		  """
       }
     } 
