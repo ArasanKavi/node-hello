@@ -6,7 +6,7 @@ pipeline {
         REPOSITORY_URI = "246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew"
 		IMAGE_TAG="246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew" + ":" +"${BUILD_NUMBER}"
 		JOB_NAME= "Triggering Telegram Bot"
-		COMMIT_MESSAGE= "${git commit -m "Basic tutorials on PHP}"
+		COMMIT_MESSAGE= "$git commit -m "Basic tutorials on PHP"
 		RELEASE_NOTES= sh(script: "git show -s --pretty=format:%h", returnStdout: true).trim()
 		Author_Name=sh(script: "git show -s --pretty=%a", returnStdout: true).trim()
 		
