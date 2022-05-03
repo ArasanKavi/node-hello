@@ -51,7 +51,7 @@ pipeline {
 	      sh """
 		  sed -i "s|newimage|${env.IMAGE_TAG}|g" docker-compose.yml
 		  docker-compose up -d
-		  docker rmi -f `docker images -qa `
+		  docker rmi 'docker images -qa'
 		  """
       }
     } 
