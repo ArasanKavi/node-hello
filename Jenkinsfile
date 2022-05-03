@@ -8,7 +8,7 @@ pipeline {
 		JOB_NAME= "Triggering Telegram Bot"
 		COMMIT_MESSAGE= "website build changes"
 		RELEASE_NOTES = "$GIT_COMMIT"
-		Author_Name=sh(script: "git show -s --pretty=%a", returnStdout: true).trim()
+		Author_Name=sh(script: "git show -s --pretty=%an", returnStdout: true).trim()
     }
    
     stages {
