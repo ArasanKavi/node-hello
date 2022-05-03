@@ -8,7 +8,7 @@ pipeline {
 		JOB_NAME= "Triggering Telegram Bot"
 		RELEASE_NOTES= sh(script: "git show -s --pretty=format:%h", returnStdout: true).trim()
 		COMMIT_MESSAGE= sh(script: "git show -s --pretty=%s", returnStdout: true).trim()
-		Author_Name= sh(script: "git show -s --pretty=%a", returnStdout: true).trim()
+		Author_Name= sh(script: "git show -s --pretty=%an", returnStdout: true).trim()
 		
     }
    
