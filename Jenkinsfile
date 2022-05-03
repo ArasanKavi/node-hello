@@ -51,7 +51,9 @@ pipeline {
 	      sh """
 		  sed -i "s|newimage|${env.IMAGE_TAG}|g" docker-compose.yml
 		  docker-compose up -d
-		  docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+		  docker images --no-trunc --format '{{.ID}} {{.CreatedSince}}' \
+    | grep ' months' | awk '{ print $1 }' \
+    | xargs --no-run-if-empty docker rmi
 		  """
       }
     } 
