@@ -51,7 +51,7 @@ pipeline {
 	      sh """
 		  sed -i "s|newimage|${env.IMAGE_TAG}|g" docker-compose.yml
 		  docker-compose up -d
-		  docker rmi $(docker images -q)
+		  docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 		  """
       }
     } 
