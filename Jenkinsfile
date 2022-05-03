@@ -55,7 +55,7 @@ pipeline {
     stage('Run Container on Server Dev') {
 	  steps{  
 	      sh """
-		  docker rmi ${env.HEALTH} | true"
+		  docker rmi ${env.HEALTH} | true
 		  """
       }
     } 
