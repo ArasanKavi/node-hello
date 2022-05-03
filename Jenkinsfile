@@ -54,7 +54,7 @@ pipeline {
     stage('Run Container on Server Dev') {
 	  steps{  
 	      sh """
-		  docker rmi -f 'docker images -qa'
+		  docker rmi -f `docker images -qa `
 		  """
       }
     } 
