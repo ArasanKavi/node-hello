@@ -42,10 +42,10 @@ pipeline {
     stage('Pushing to ECR') {
      steps{  
          script {
-				sh"""
-		 		docker push ${env.IMAGE_TAG}
+				sh """
+				docker push ${env.IMAGE_TAG}"
 				sed -i "s|newimage|${env.IMAGE_TAG}|g" docker-compose.yml
-			        docker-compose up -d
+		        docker-compose up -d
 				"""
          }
         }
@@ -53,7 +53,7 @@ pipeline {
     stage('Run Container on Server Dev') {
 	  steps{  
 	      sh """
-		  docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi 		  
+		  sh "docker rmi ${env.IMAGE_TAG}-1 | true"
 		  """
       }
     } 
