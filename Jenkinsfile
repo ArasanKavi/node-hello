@@ -6,7 +6,7 @@ pipeline {
         REPOSITORY_URI = "246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew"
 		IMAGE_TAG="246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew" + ":" +"${BUILD_NUMBER}"
 		JOB_NAME= "Triggering Telegram Bot"
-		COMMIT_MESSAGE= "website build changes"
+		COMMIT_MESSAGE= "${git commit -m "Basic tutorials on PHP}"
 		RELEASE_NOTES= sh(script: "git show -s --pretty=format:%h", returnStdout: true).trim()
 		Author_Name=sh(script: "git show -s --pretty=%a", returnStdout: true).trim()
 		
@@ -61,7 +61,7 @@ pipeline {
                withCredentials([string(credentialsId: 'continous-integration-token', variable: 'TOKEN'),
                string(credentialsId: 'Telegramchatid', variable: 'CHAT_ID')]) {
                sh """
-			   curl -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="Hi, Jenkins job: ${JOB_NAME} status is ${currentBuild.currentResult} , Committed by : ${env.Author_Name} , commit-id : ${env.RELEASE_NOTES} , commit msg : ${env.GIT_COMMIT_MSG}"
+			   curl -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="Hi, Jenkins job: ${JOB_NAME} status is ${currentBuild.currentResult} , Committed by : ${env.Author_Name} , commit-id : ${env.RELEASE_NOTES} , commit msg : ${env.COMMIT_MESSAGE}"
                 """
                }
             }
