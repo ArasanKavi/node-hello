@@ -9,9 +9,6 @@ pipeline {
 		RELEASE_NOTES= sh(script: "git show -s --pretty=format:%h", returnStdout: true).trim()
 		COMMIT_MESSAGE= sh(script: "git show -s --pretty=%s", returnStdout: true).trim()
 		Author_Name= sh(script: "git show -s --pretty=%an", returnStdout: true).trim()
-	    NUMBER= "${BUILD_NUMBER}"
-	    NEGATIVE_VALUE= (($NUMBER-1))
-	    IMAGE_TAG1="246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew" + ":" +"${env.NEGATIVE_VALUE}"
 	    
 		
     }
@@ -57,7 +54,7 @@ pipeline {
     stage('Run Container on Server Dev') {
 	  steps{  
 	      sh """
-		  docker rmi -f `docker images -qa `
+		  docker rmi -f 'docker images -qa'
 		  """
       }
     } 
