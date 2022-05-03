@@ -9,7 +9,8 @@ pipeline {
 		RELEASE_NOTES= sh(script: "git show -s --pretty=format:%h", returnStdout: true).trim()
 		COMMIT_MESSAGE= sh(script: "git show -s --pretty=%s", returnStdout: true).trim()
 		Author_Name= sh(script: "git show -s --pretty=%an", returnStdout: true).trim()
-	    NEGATIVE_VALUE= ((${BUILD_NUMBER}-1))
+	    NUMBER= "${BUILD_NUMBER}"
+	    NEGATIVE_VALUE= (($NUMBER-1))
 	    IMAGE_TAG1="246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew" + ":" +"${env.NEGATIVE_VALUE}"
 	    
 		
