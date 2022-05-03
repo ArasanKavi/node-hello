@@ -53,7 +53,7 @@ pipeline {
     stage('Run Container on Server Dev') {
 	  steps{  
 	      sh """
-		  sh "docker rmi ${env.IMAGE_TAG}-1 | true"
+		  sh "docker rmi ${env.IMAGE_TAG-1} | true"
 		  """
       }
     } 
