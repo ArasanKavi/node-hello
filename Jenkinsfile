@@ -42,10 +42,10 @@ pipeline {
     stage('Pushing to ECR') {
      steps{  
          script {
-		 sh"""
-				docker push ${env.IMAGE_TAG}"
+				sh"""
+		 		docker push ${env.IMAGE_TAG}
 				sed -i "s|newimage|${env.IMAGE_TAG}|g" docker-compose.yml
-		        docker-compose up -d
+			        docker-compose up -d
 				"""
          }
         }
