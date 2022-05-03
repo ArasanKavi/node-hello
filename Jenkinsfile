@@ -11,7 +11,7 @@ pipeline {
 		Author_Name= sh(script: "git show -s --pretty=%an", returnStdout: true).trim()    
 		IMAGE= "246069437619.dkr.ecr.us-east-1.amazonaws.com/adminnew"
 		LAST_BUILD= "currentBuild.previousBuild.result"
-		HEALTH= "${env.IMAGE}"+ ":" +"${ENV.LAST_BUILD}"
+		HEALTH= "${env.IMAGE}"+ ":" +"${env.LAST_BUILD}"
 	}
    
     stages {
