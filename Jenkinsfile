@@ -8,7 +8,7 @@ pipeline {
 		JOB_NAME= "Triggering Telegram Bot"
 		COMMIT_MESSAGE= "website build changes"
 		RELEASE_NOTES = "$GIT_COMMIT"
-		Author_Name= "git config --global --get user.name"
+		Author_Name= "git shortlog -s --author"
     }
    
     stages {
