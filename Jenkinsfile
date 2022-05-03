@@ -51,7 +51,7 @@ pipeline {
 	      sh """
 		  sed -i "s|newimage|${env.IMAGE_TAG}|g" docker-compose.yml
 		  docker-compose up -d
-		  docker rmi 'docker images -qa'
+		  docker rmi 'docker images -a | grep '<none>' | awk '{print $3}''
 		  """
       }
     } 
