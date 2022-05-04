@@ -63,7 +63,7 @@ pipeline {
          steps {
             script{
                withCredentials([string(credentialsId: 'continous-integration-token', variable: 'TOKEN'),
-               string(credentialsId: 'Telegramchatid', variable: 'CHAT_ID')]) {
+               string(credentialsId: 'telegramidgroup', variable: 'CHAT_ID')]) {
                sh """
 			   curl -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="Hi, Jenkins job: ${JOB_NAME} status is ${currentBuild.currentResult} , Committed by : ${env.Author_Name} , commit-id : ${env.RELEASE_NOTES} , commit msg : ${env.COMMIT_MESSAGE}"
                 """
