@@ -31,22 +31,34 @@ pipeline {
             }
         }
   
+    // Building Docker images
+    stage('Building image') {
+      steps{
+        script {
+          sh "docker build -t ${env.IMAGE_TAG} ."
+        }
+      }
+    }
    
     // Uploading Docker images into AWS ECR
     stage('Pushing to ECR') {
      steps{  
          script {
 				sh """
-				docker build -t ${env.IMAGE_TAG} .
 				docker push ${env.IMAGE_TAG}
 				sed -i "s|newimage|${env.IMAGE_TAG}|g" docker-compose.yml
 		        docker-compose up -d
-				docker rmi ${env.HEALTH}
 				"""
          }
         }
       }
-    
+    stage('Run Container on Server Dev') {
+	  steps{  
+	      sh """
+		  docker rmi -f ${env.HEALTH} 
+		  """
+      }
+    } 
     stage("Triggering") {
          steps {
             script{
